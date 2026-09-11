@@ -1,0 +1,175 @@
+/* Main form container */
+.form-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffffea;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #111827;
+  border: 2px solid #d1d5db;
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.form-container select,
+.form-container input[type="checkbox"] {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  flex: 1 1 48%; /* ทำให้ขนาดของ checkbox มีความยืดหยุ่น */
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px; /* เว้นระยะห่างระหว่าง checkbox และข้อความ */
+  border-radius: 4px;
+  border: 1px solid #d1d5db;
+  accent-color: #3b82f6; /* เปลี่ยนสี checkbox เมื่อเลือก */
+  transition: all 0.3s ease;
+}
+
+.checkbox-group input[type="checkbox"]:hover {
+  transform: scale(1.1); /* เพิ่มขนาดเล็กน้อยเมื่อ hover */
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+  background-color: #3b82f6; /* สีเมื่อเลือก */
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* เพิ่มเงาเล็กน้อย */
+}
+
+.checkbox-group label span {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonClick {
+  background: linear-gradient(135deg, #3399ff, #006eff);
+  color: white;
+  border: none;
+  margin: auto;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  width: 200px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.buttonClick:hover {
+  background: linear-gradient(135deg, #66bfff, #3385ff);
+  transform: scale(1.1);
+}
+
+#recommendation {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  color: #1e90ff;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Result */
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px dashed #9ca3af;
+  border-radius: 10px;
+  background-color: #f9fafb;
+}
+
+.result p {
+  font-size: 1rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+
+  .menu-icon {
+    left: 10px;
+  }
+
+  .checkbox-group label {
+    flex: 1 1 100%;
+  }
+}
+
+.logout{
+  position: absolute;
+  top: 120px;
+  left: 95px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  
+}
+
+.logout:hover {
+  text-shadow: 0 0 8px rgb(255, 0, 0);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.backtohome {
+  background: linear-gradient(135deg, #3399ff, #006eff);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  width: 150px;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+  margin-left: 225px;
+  margin-top: 25px;
+}
+

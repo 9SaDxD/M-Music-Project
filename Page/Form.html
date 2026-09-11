@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>แบบสอบถาม</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./Form.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <header>
+      <div>
+        <div class="menu-icon" id="menu-icon">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+          <ul>
+            <li><a href="#" class="link , song-title">แบบสอบถาม</a></li>
+            <li><span class="logout , song-title"  style="color: white;">Logout</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="logo">
+        <h1>แบบสอบถาม</h1>
+      </div>
+
+      <nav>
+        <ul class="headerul">
+          <li class="headerli , song-title"><a href="/Home.html" class="link">Home</a></li>
+          <li class="headerli , song-title"><a href="/Profile.html" class="link">Profile</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="form-container">
+      <h2>ตอบคำถามเพื่อหาแนวเพลงที่ใช่</h2>
+      <form id="musicForm">
+        <label>1. ตอนนี้คุณรู้สึกยังไง?</label>
+        <select name="mood" required>
+          <option value="สดใส">😊 สดใส ร่าเริง</option>
+          <option value="ผ่อนคลาย">😌 ผ่อนคลาย สบายๆ</option>
+          <option value="เศร้า">😔 เศร้า เหงา คิดถึงใครบางคน</option>
+          <option value="ระบาย">😤 อยากระบาย อยากปลดปล่อย</option>
+          <option value="รัก">😍 อินเลิฟ หวานๆ</option>
+          <option value="เครียด">😩 เครียด เหนื่อย อยากพักใจ</option>
+          <option value="ง่วง">😴 ง่วง อยากนอน</option>
+          <option value="พลัง">💪 กระตือรือร้น อยากได้พลัง</option>
+          <option value="ปาร์ตี้">🎉 อยากสนุก โยกๆ ปาร์ตี้</option>
+        </select>
+
+        <label>2. คุณอยากฟังเพลงเพื่อ?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="purpose" value="รู้สึกดีขึ้น"> รู้สึกดีขึ้น</label>
+          <label><input type="checkbox" name="purpose" value="ทำงาน"> ทำงาน/อ่านหนังสือ</label>
+          <label><input type="checkbox" name="purpose" value="กล่อมนอน"> กล่อมนอน</label>
+          <label><input type="checkbox" name="purpose" value="ฟังฆ่าเวลา"> ฟังฆ่าเวลา</label>
+          <label><input type="checkbox" name="purpose" value="ออกกำลังกาย"> ปลุกพลัง</label>
+          <label><input type="checkbox" name="purpose" value="เดินทาง"> เดินทาง</label>
+          <label><input type="checkbox" name="purpose" value="คิดถึงแฟน"> คิดถึงแฟน</label>
+          <label><input type="checkbox" name="purpose" value="ปลดปล่อยอารมณ์"> ปลดปล่อยอารมณ์</label>
+        </div>
+
+        <label>3. แนวเพลงที่คุณชอบ</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="genre" value="Pop"> Pop</label>
+          <label><input type="checkbox" name="genre" value="Rock"> Rock</label>
+          <label><input type="checkbox" name="genre" value="Hip-Hop"> Hip-Hop</label>
+          <label><input type="checkbox" name="genre" value="EDM"> EDM</label>
+          <label><input type="checkbox" name="genre" value="Lo-fi"> Lo-fi</label>
+          <label><input type="checkbox" name="genre" value="Indie"> Indie</label>
+          <label><input type="checkbox" name="genre" value="Jazz"> Jazz</label>
+          <label><input type="checkbox" name="genre" value="ลูกทุ่ง"> ลูกทุ่ง</label>
+        </div>
+        
+        <div class="button-container">
+          <button type="submit" class="buttonClick">แนะนำแนวเพลง</button>
+        </div>
+      </form>
+      <di id="result" style="display:none; margin-top: 20px; padding: 15px; background-color: #f4f4f9; border: 1px solid #ccc; border-radius: 8px;">
+      <div id="button"></div>
+    </main>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  // ฟังก์ชัน logout
+  function logout() {
+    localStorage.removeItem("currentUser");  // ลบข้อมูลผู้ใช้จาก localStorage
+    setTimeout(() => {
+      window.location.href = "../home.html"; // ไปที่หน้า login.html ที่อยู่ในโฟลเดอร์หลัก
+    }, 1000); // หน่วงเวลา 1 วินาที
+  }
+  // ผูก event listener กับปุ่ม Logout
+  document.querySelector(".logout").addEventListener("click", logout);
+
+  // ฟังก์ชันการสมัครคำแนะนำเพลง
+  document.getElementById("musicForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const mood = event.target.mood.value;
+    const purpose = [...event.target.querySelectorAll("input[name='purpose']:checked")].map(e => e.value);
+    const genre = [...event.target.querySelectorAll("input[name='genre']:checked")].map(e => e.value);
+
+    // ตรวจสอบว่ามีการกรอกข้อมูลครบหรือไม่
+    if (!mood || purpose.length === 0 || genre.length === 0) {
+      alert("กรุณาตอบคำถามให้ครบก่อน");
+      return; // หยุดการทำงานของฟังก์ชันถ้าข้อมูลไม่ครบ
+    }
+
+    let suggestion = "";
+
+    if (mood === "เศร้า") suggestion = "แนะนำแนว Acoustic, Ballad หรือ R&B ภาษาไทยเพราะๆ ให้คุณได้ปล่อยใจ";
+      else if (mood === "สดใส") suggestion = "ลองฟัง Pop สดใสๆ หรือเพลง K-pop มันๆ เพิ่มพลังดีๆ";
+      else if (mood === "ผ่อนคลาย") suggestion = "เพลง Lo-fi, Jazz หรือ Indie ช่วยให้ใจเย็นและสบายมากขึ้น";
+      else if (mood === "ระบาย") suggestion = "ฟัง Rock, Hip-Hop หรือ EDM ปลดปล่อยให้สุด!";
+      else if (mood === "รัก") suggestion = "ลอง Pop, R&B หรือเพลงหวานๆ ภาษาไทยและเกาหลีดูสิ 💕";
+      else if (mood === "เครียด") suggestion = "ชวนฟังเพลงบรรเลงเบาๆ, Lo-fi หรือคลาสสิก ผ่อนคลายมากเลย";
+      else if (mood === "พลัง") suggestion = "EDM, Rock, หรือ Hip-Hop ตึงๆ ช่วยฮึบได้ดีเลย!";
+      else if (mood === "ง่วง") suggestion = "เพลง Lo-fi ช่วยกล่อมให้หลับสบาย";
+      else if (mood === "ปาร์ตี้") suggestion = "เปิด EDM, Pop หรือเพลงแดนซ์สายโยกกันเลย! 🎉";
+
+    const resultText = `🎧 จากความรู้สึกของคุณ (${mood}) และสิ่งที่คุณต้องการ (${purpose.join(", ")})\n\n✅ แนวเพลงที่เหมาะ: ${suggestion}\n\n🎶 แนวที่คุณชอบ: ${genre.join(", ")}`;
+    const resultDiv = document.getElementById("result");
+    resultDiv.textContent = resultText;
+    resultDiv.style.display = "block";
+
+    const nexttoHome = document.createElement("button");
+    nexttoHome.textContent = "ไปเริ่มฟังกันเลย!";
+    nexttoHome.classList.add("backtohome", "btn", "btn-outline-primary", "me-2");
+    nexttoHome.addEventListener("click", () => {
+      window.location.href = "/Home.html"; // เปลี่ยนเส้นทางไปที่หน้า Home
+    });
+    resultDiv.appendChild(nexttoHome);
+
+    // ดึงข้อมูลผู้ใช้จาก localStorage
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) {
+      alert("กรุณาเข้าสู่ระบบก่อนใช้งานหน้า Home");
+      window.location.href = "login.html";
+      return;
+    }
+
+    // โหลด users จาก localStorage
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // หา user ที่ตรงกับ currentUser
+    const userIndex = users.findIndex(user => user.username === currentUser.username);
+    if (userIndex === -1) {
+      alert("ไม่พบผู้ใช้ในระบบ");
+      return;
+    }
+
+    // อัปเดตข้อมูล preferredMood และ preferredGenre
+    users[userIndex].preferredMood = [mood]; // เก็บเป็น array
+    users[userIndex].preferredGenre = genre; // ใช้ genre ที่เลือกมา
+    users[userIndex].isFirstLogin = false;
+
+    // เซฟข้อมูลกลับไปที่ localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // อัปเดต currentUser ใน localStorage ด้วยค่าใหม่
+    currentUser.preferredMood = [mood]; // เก็บเป็น array
+    currentUser.preferredGenre = genre; // ใช้ genre ที่เลือกมา
+    currentUser.isFirstLogin = false; // ตั้งค่า isFirstLogin เป็น false
+
+    // เซฟข้อมูล currentUser กลับไปที่ localStorage
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  });
+});
+
+  </script>
+  <script src="/slide.js"></script>
+</html>

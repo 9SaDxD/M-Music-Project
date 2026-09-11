@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="auth-container">
+    <h2>เข้าสู่ระบบ</h2>
+  <form class="auth-form" onsubmit="login(); return false;">
+    <input type="text" id="username" placeholder="ชื่อผู้ใช้" />
+    <input type="password" id="password" placeholder="รหัสผ่าน" />
+    <button type="submit">เข้าสู่ระบบ</button>
+  </form>
+  <p class="switch-link">ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a></p>
+  <!-- ตรวจสอบให้แน่ใจว่าใน HTML มี id ที่ตรงกับนี้ -->
+  <p id="profileName" style="display: none;"></p>
+  <p id="profileDesc" style="display: none;"></p>
+  </div>
+  
+
+
+  <script src="user.js"></script>
+</body>
+</html>

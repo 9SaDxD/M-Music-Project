@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./Home.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+      table {
+        width: 95%;
+        border-collapse: collapse;
+        overflow-y: auto;
+      }
+
+      th, td {
+        padding: 8px 12px;
+        border: 1px solid #b9b9b9;
+        text-align: left;
+        border-radius: 5px;
+      }
+
+      tr:hover {
+        background-color: #f3f3f3;
+      }
+
+      /* แถวเลขคี่ (1, 3, 5, ...) เป็นสีขาว */
+      tr:nth-child(odd) {
+        background-color: #fafafa;
+      }
+
+      tr:nth-child(odd):hover {
+        background-color: #f3f3f3;
+      }
+
+      /* แถวเลขคู่ (2, 4, 6, ...) เป็นสีเทา */
+      tr:nth-child(even) {
+        background-color: #ffffff;
+      }
+
+      tr:nth-child(even):hover {
+          background-color: #c0c0c0;
+        }
+
+      .buttonClick {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px 0;
+        background: linear-gradient(135deg, #667eea, #764ba2); 
+        color: white;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .buttonClick:hover {
+        background: linear-gradient(135deg, #5a6dde, #693c94);
+        transform: scale(1.1);
+      }
+
+      /* จัดระเบียบให้ปุ่มไปขวามือ */
+      td {
+        display: flex;
+        justify-content: space-between; /* จัดระเบียบให้ปุ่มไปขวามือ */
+        align-items: center; /* จัดระเบียบให้ปุ่มไปขวามือ */
+      }
+      .table-container {
+        display: flex;
+        justify-content: center; /* จัดตำแหน่งในแนวนอน */
+        align-items: center; /* จัดตำแหน่งในแนวตั้ง */
+        padding: 20px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="menu-icon" id="menu-icon">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <div class="sidebar" id="sidebar">
+        <ul>
+          <li><a href="./Page/Form.html" class="link , song-title">แบบสอบถาม</a></li>
+          <li><span class="logout , song-title">Logout</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h1>M-Music</h1>
+      </div>
+
+      <nav>
+        <ul class="headerul">
+          <li class="headerli , song-title"><a href="#" class="link">Home</a></li>
+          <li class="headerli , song-title"><a href="./Profile.html" class="link">Profile</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="ชื่ออศิลปิน" style="border-radius: 20px;"/>
+      <button onclick="searchSongs()" class="displaybutton , bi bi-search"></button>
+      
+      <!-- ปุ่ม Filter -->
+      <button onclick="viewFavorites()" class="displaybutton ,bi bi-heart-fill"></button>
+      <button onclick="showqueuePopup()"class="displaybutton , bi-music-note-list"></button>
+      <button onclick="viewAllplaylistsPopup()" class="displaybutton , bi-folder-fill"></button>
+      <button onclick="showFilterPopup()" class="displaybutton , bi bi-funnel"></button>
+      <!-- ป๊อปอัพ Filter -->
+      <div id="filterPopup" class="popup">
+        <div class="popup-content">
+          <span class="close" onclick="closeFilterPopup()">&times;</span>    
+      <!-- ตัวเลือกการกรอง -->
+          <label class="song-title">A-Z<input class="checkbox" type="radio" name="filterOption" value="az" checked> </label>
+          <label class="song-title">Rock<input class="checkbox" type="radio" name="filterOption" value="Rock"></label>
+          <label class="song-title">HipHop<input class="checkbox" type="radio" name="filterOption" value="Hip-Hop"></label>
+          <label class="song-title">Jazz<input class="checkbox" type="radio" name="filterOption" value="Jazz"></label>
+          <label class="song-title">Pop<input class="checkbox" type="radio" name="filterOption" value="Pop"></label>
+          <label class="song-title">Lo-fi<input class="checkbox" type="radio" name="filterOption" value="Lo-fi"></label>
+          <label class="song-title">Indie<input  class="checkbox" type="radio" name="filterOption"  value="Indie"></label>
+          <label class="song-title">EDM<input class="checkbox" type="radio" name="filterOption" value="EDM"></label>
+          <label class="song-title">ลูกทุ่ง<input class="checkbox" type="radio" name="filterOption" value="ลูกทุ่ง"></label>
+      <!-- ปุ่มยืนยันการกรอง -->
+          <button onclick="applyFilter()" class="displaybutton" style="width: auto;">Apply Filter</button>
+        </div>
+        
+      </div>
+    </div>
+
+    <div style="text-align: center; margin: 20px">
+      <!-- ปุ่ม Filter -->
+            <div id="queuePopup" class="popup2">
+              <div class="popup-content2">
+                <span class="close" onclick="closequeuePopup()">&times;</span>
+            <!-- ตารางคิวที่เลือก -->
+                <table id="songQueueTable" style="margin: 0 auto; ">
+                  <thead>
+                    <tr>
+                      <th class="song-title" style="text-align: center; color: rgb(255, 255, 255); background: linear-gradient(135deg, #5569c4, #764ba2);">รายการคิว</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+      <div id="viewAllplaylistsPopup" class="popup2">
+        <div class="popup-content2">
+          <span class="close" onclick="closeAllplaylistsPopup()">&times;</span>
+          <!-- <span class="plus" onclick="closeAllplaylistsPopup()">&#43;</span> -->
+            <h3 style="text-align: center;">My Playlists</h3>
+            <div class="playlist-grid" id="playlistGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ตารางเพลง -->
+    <div class="table-container">
+      <table id="songTable">
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- แถบตัวเล่นเพลง -->
+    <div class="slide-window" id="slideWindow">
+      <span class="closewindow" onclick="closeSlideWindow()">&times;</span>
+      <div class="content" id="content">
+        <!-- แถวควบคุมเพลง -->
+        <div class="control-row">
+          <button onclick="previousSong()" class="runbutton , bi-skip-backward-fill"></button>
+          <div class="center-controls">
+            <p id="songTitle" class="song-title">ชื่อเพลง</p>
+            <div class="button-group">
+              <button onclick="randomSong()" class="runbutton , bi bi-shuffle"></button>
+              <button onclick="replay()" class="runbutton , bi bi-arrow-repeat " id="replayBtn"></button>
+            </div>
+          </div>
+          <button onclick="nextSong()" class="runbutton ,  bi-skip-forward-fill"></button>
+        </div> 
+        <!-- ตัวเล่นเพลง -->
+        <audio id="audioPlayer" controls>
+          <source id="audioSource" src="" type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+
+      <!-- แถบตัวเล่นเพลงของคิว -->
+    <div class="slide-window" id="slideWindowbyQueue" style="background-color: rgb(212, 212, 212)">
+      <span class="closewindow" onclick="closeSlideQueueWindow()">&times;</span>
+      <div class="content" id="content">
+        <!-- แถวควบคุมเพลง -->
+        <div class="control-row">
+          <button onclick="previousQueueSong()" class="runbutton bi-skip-backward-fill"></button>
+            <div class="center-controls">
+            <p id="QueuesongTitle" class="song-title">ชื่อเพลง</p>
+            <div class="button-group">
+              <button onclick="replayQueue()" class="runbutton , bi bi-arrow-repeat " id="replayBtnQueue"></button>
+            </div>
+          </div>
+          <button onclick="nextQueueSong()" class="runbutton , bi-skip-forward-fill"></button>
+        </div>
+        <!-- ตัวเล่นเพลง -->
+        <audio id="QueueaudioPlayer" controls>
+          <source id="QueueaudioSource" src="" type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+    
+
+    <script src="/songData.js"></script>
+    <script src="/Home.js"></script>
+    <script src="/slide.js"></script>
+    <script src="user.js"></script>
+  </body>
+</html>

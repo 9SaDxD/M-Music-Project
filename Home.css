@@ -1,0 +1,403 @@
+.headerx{
+  height: 20px;
+  margin-top: -20px;
+}
+
+.closewindow {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: #000000;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+
+/* การจัดสไตล์ให้กับเนื้อหาภายใน slide-window */
+.content {
+  padding: 20px;
+  height: 100%;
+  font-size: 18px;
+  line-height: 1.6;
+  position: relative;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* ชิดขวา */
+  gap: 6px; /* ระยะห่างพอดี */
+  margin-top: 5px;
+}
+
+.displaybutton {
+  width: 60px;
+  height: 40px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  background: linear-gradient(135deg, #3399ff, #006eff);
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.displaybutton:hover {
+  background: linear-gradient(135deg, #66bfff, #3385ff);
+  transform: scale(1.1);
+}
+
+.runbutton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, #7f8fff, #b87cff);;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.runbutton:hover {
+  transform: scale(1.1);
+}
+.preandnext {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.nameandbutton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: -25px;
+}
+
+.center-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.slideclose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #000000;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+/* ป๊อปอัพ */
+.popup {
+  display: none; /* ซ่อนป๊อปอัพ */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* เพิ่มพื้นหลังมืด */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* เนื้อหาของป๊อปอัพ */
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 500px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.popup2 {
+  display: none; /* ซ่อนป๊อปอัพ */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* พื้นหลังมืด */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content2 {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%; /* เปลี่ยนจาก 1000px เป็น 80% เพื่อให้เหมาะกับหน้าจอมือถือ */
+  max-width: 1000px; /* จำกัดความกว้างสูงสุด */
+  max-height: 90%; /* เพิ่มการจำกัดความสูงสูงสุด */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: auto; /* เลื่อนเมื่อเนื้อหามากเกินไป */
+}
+
+
+/* ปิดป๊อปอัพ */
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #000000;
+}
+.plus {
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
+  color: #cccccc;
+}
+
+.create-playlist{
+ border: #cccccc dashed 2px;
+}
+
+/* ตัวเลือกภายในป๊อปอัพ */
+label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 16px;
+
+}
+
+.checkbox {
+  margin-left: auto;
+  transform: scale(1.2);
+  width: auto;
+  border: none;
+}
+
+  /* สไตล์ของ slide-window */
+  .slide-window {
+    position: fixed;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 200px;
+    width: 90%;
+    max-width: 700px;
+    background: linear-gradient(135deg, #d9deff, #e6c9ff);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: bottom 0.4s ease-in-out;
+    z-index: 999;
+    border-radius: 20px;
+  }
+  
+  /* เมื่อหน้าต่างเปิด */
+  .slide-window.open {
+    bottom: 35px; /* ย้ายหน้าต่างขึ้น */
+  }
+
+  .playlist-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .playlist-card {
+    position: relative;
+    width: 180px;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  .playlist-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .playlist-card .title {
+    color: #333;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    background-color: transparent;
+    border: none;
+    color: #ff1900;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    color: #c0392b;
+  }
+
+  .rename-btn {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+
+  input {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fafafa;
+    border: 1px solid #c2c2c2;
+    width: 100%;
+    max-width: 80%;
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+  
+  .search-container {
+    margin-left: 15px;
+  }
+
+  .logout{
+    position: absolute;
+    top: 120px;
+    left: 95px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    
+  }
+  
+  .logout:hover {
+    text-shadow: 0 0 8px rgb(255, 0, 0);
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  .delete-queue{
+    position: absolute;
+    top: 2px;
+    right: 1px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #f01800;
+    cursor: pointer;
+  }
+
+  .delete-queue:hover {
+    color: #c0392b;
+  }
+
+  /* .favorite-btn {
+    transition: all 0.3s ease;
+  }
+  
+  .favorite-btn:hover {
+    background-color: #ffe6e6;
+    color: #c00;
+  }
+  
+  .favorite-btn.favorited {
+    background-color: #ffcccc;
+    color: #b30000;
+    font-weight: bold;
+  } */
+
+  /* สไตล์ปกติของแถบป็อปอัพ */
+.popup3 {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -300px; /* ตั้งค่าเริ่มต้นให้แถบอยู่ด้านขวานอกจอ */
+  width: 300px;
+  height: 100%;
+  background-color: #f1f1f1;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease-in-out; /* การเปลี่ยนแปลงตำแหน่งของแถบ */
+  z-index: 1000;
+}
+
+/* เนื้อหาภายใน popup */
+.popup-content3 {
+  padding: 20px;
+}
+
+/* ปุ่มปิด */
+.popup3 .close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#replayBtn {
+  background: #eee;
+  
+}
+
+#replayBtn.active {
+  background:linear-gradient(135deg, #7f8fff, #b87cff);;; /* สีเขียวแสดงว่าเปิด replay */
+  color: white;
+}
+
+#replayBtnQueue {
+  background: #eee;
+}
+
+#replayBtnQueue.active {
+  background: linear-gradient(135deg, #7f8fff, #b87cff);
+  color: white;
+}
+
+
+  
+
+  
+
+
+
+
