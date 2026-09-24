@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="./Form.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="../main.css">
   </head>
   <body>
     <header>
@@ -30,8 +30,8 @@
 
       <nav>
         <ul class="headerul">
-          <li class="headerli , song-title"><a href="/Home.html" class="link">Home</a></li>
-          <li class="headerli , song-title"><a href="/Profile.html" class="link">Profile</a></li>
+          <li class="headerli , song-title"><a href="../Home.html" class="link">Home</a></li>
+          <li class="headerli , song-title"><a href="../Profile.html" class="link">Profile</a></li>
         </ul>
       </nav>
     </header>
@@ -67,7 +67,6 @@
         <label>3. แนวเพลงที่คุณชอบ</label>
         <div class="checkbox-group">
           <label><input type="checkbox" name="genre" value="Pop"> Pop</label>
-          <label><input type="checkbox" name="genre" value="Rock"> Rock</label>
           <label><input type="checkbox" name="genre" value="Hip-Hop"> Hip-Hop</label>
           <label><input type="checkbox" name="genre" value="EDM"> EDM</label>
           <label><input type="checkbox" name="genre" value="Lo-fi"> Lo-fi</label>
@@ -91,7 +90,7 @@
   function logout() {
     localStorage.removeItem("currentUser");  // ลบข้อมูลผู้ใช้จาก localStorage
     setTimeout(() => {
-      window.location.href = "../home.html"; // ไปที่หน้า login.html ที่อยู่ในโฟลเดอร์หลัก
+      window.location.href = "../index.html"; // ไปที่หน้า index.html ที่อยู่ในโฟลเดอร์หลัก
     }, 1000); // หน่วงเวลา 1 วินาที
   }
   // ผูก event listener กับปุ่ม Logout
@@ -132,7 +131,7 @@
     nexttoHome.textContent = "ไปเริ่มฟังกันเลย!";
     nexttoHome.classList.add("backtohome", "btn", "btn-outline-primary", "me-2");
     nexttoHome.addEventListener("click", () => {
-      window.location.href = "/Home.html"; // เปลี่ยนเส้นทางไปที่หน้า Home
+      window.location.href = "../index.html"; // เปลี่ยนเส้นทางไปที่หน้า Home
     });
     resultDiv.appendChild(nexttoHome);
 
@@ -140,7 +139,7 @@
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (!currentUser) {
       alert("กรุณาเข้าสู่ระบบก่อนใช้งานหน้า Home");
-      window.location.href = "login.html";
+      window.location.href = "../index.html";
       return;
     }
 
@@ -173,5 +172,5 @@
 });
 
   </script>
-  <script src="/slide.js"></script>
+  <script src="../slide.js"></script>
 </html>
