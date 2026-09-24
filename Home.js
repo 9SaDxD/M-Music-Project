@@ -290,7 +290,7 @@ async function toggleReplay(songObj) {
 // ปุ่มสำหรับสุ่มเพลง
 async function playSong(song) {
   const audioPlayer = document.getElementById("audioPlayer");
-  const audioSource = document.getElementById("audioSource");
+  
   const songTitle = document.getElementById("songTitle");
 
   // ดึง songslist ล่าสุดจาก localStorage
@@ -302,7 +302,7 @@ async function playSong(song) {
     songTitle.textContent = `ไม่พบไฟล์เสียงของ: ${songToPlay.artist} - ${songToPlay.name}`;
     audioPlayer.pause();
     audioPlayer.currentTime = 0;
-    audioSource.src = "";
+    
     audioPlayer.load();
     return;
   }
@@ -507,7 +507,7 @@ async function replayQueue() {
 
 async function playqueueSong(song) {
   const audioPlayer = document.getElementById("QueueaudioPlayer");
-  const audioSource = document.getElementById("QueueaudioSource");
+  
   const songTitle = document.getElementById("QueuesongTitle");
   // ดึง songslist ล่าสุดจาก localStorage
   const songslist = JSON.parse(localStorage.getItem("songs")) || [];
@@ -522,7 +522,7 @@ async function playqueueSong(song) {
     songTitle.textContent = `ไม่พบไฟล์เสียงของ: ${songToPlay.artist} - ${songToPlay.name}`;
     audioPlayer.pause();
     audioPlayer.currentTime = 0;
-    audioSource.src = "";
+    
     audioPlayer.load();
     return;
   }
