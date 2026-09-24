@@ -316,7 +316,7 @@ async function playSong(song) {
       (s) => s.name === song.name && s.artist === song.artist
     );
   } catch (error) {
-    console.error("Error loading audio:", error);
+    console.error("Error loading audio:", error); alert("ไม่สามารถเล่นเพลงได้: " + error);
     return;
   }
 }
@@ -536,7 +536,7 @@ async function playqueueSong(song) {
       (s) => s.name === song.name && s.artist === song.artist
     );
   } catch (error) {
-    console.error("Error loading audio:", error);
+    console.error("Error loading audio:", error); alert("ไม่สามารถเล่นเพลงได้: " + error);
     return;
   }
 }
@@ -588,7 +588,7 @@ async function nextQueueSong() {
       alert("ไม่มีเพลงถัดไป"); // หากถึงเพลงสุดท้ายแล้ว
     }
   } catch (error) {
-    console.error("Error loading audio:", error);
+    console.error("Error loading audio:", error); alert("ไม่สามารถเล่นเพลงได้: " + error);
   }
 }
 
@@ -617,7 +617,7 @@ async function previousQueueSong() {
       alert("ไม่มีเพลงก่อนหน้า");
     }
   } catch (error) {
-    console.error("Error loading audio:", error);
+    console.error("Error loading audio:", error); alert("ไม่สามารถเล่นเพลงได้: " + error);
   }
 }
 
