@@ -309,14 +309,7 @@ async function playSong(song) {
 
   try {
     songTitle.textContent = `${songToPlay.artist} - ${songToPlay.name}`;
-    audioSource.src = songToPlay.url;
-    await audioPlayer.load();
-    await new Promise((resolve, reject) => {
-      audioPlayer.oncanplaythrough = resolve; // รอให้โหลดเพลงเสร็จ
-      audioPlayer.onerror = (error) => {
-        reject("เกิดข้อผิดพลาดในการโหลดเพลง: " + error);
-      };
-    });
+    audioPlayer.src = songToPlay.url;
     await audioPlayer.play(); // เล่นเพลง
     lastPlayedSong = songToPlay; // เก็บเพลงล่าสุดที่เล่น
     currentIndex = currentPlaylist.findIndex(
@@ -536,14 +529,7 @@ async function playqueueSong(song) {
 
   try {
     songTitle.textContent = `${songToPlay.artist} - ${songToPlay.name}`;
-    audioSource.src = songToPlay.url;
-    await audioPlayer.load();
-    await new Promise((resolve, reject) => {
-      audioPlayer.oncanplaythrough = resolve; // รอให้โหลดเพลงเสร็จ
-      audioPlayer.onerror = (error) => {
-        reject("เกิดข้อผิดพลาดในการโหลดเพลง: " + error);
-      };
-    });
+    audioPlayer.src = songToPlay.url;
     await audioPlayer.play();
     lastPlayedSong = songToPlay; // เก็บเพลงล่าสุดที่เล่น
     currentIndex = songQueue.findIndex(
