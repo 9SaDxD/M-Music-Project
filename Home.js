@@ -4,7 +4,7 @@ const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 if (!currentUser) {
   alert("กรุณาเข้าสู่ระบบก่อนใช้งานหน้า Home");
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 }
 
 // ดึงข้อมูลเพลงจาก Local Storage
@@ -77,7 +77,7 @@ let userGenres = (currentUser?.preferredGenre && currentUser.preferredGenre.leng
   function logout() {
     localStorage.removeItem("currentUser");
     setTimeout(() => {
-      window.location.href = "login.html"; // เปลี่ยนหน้าไปยังหน้า login หลังจาก 1 วินาที
+      window.location.href = "index.html"; // เปลี่ยนหน้าไปยังหน้า login หลังจาก 1 วินาที
     }, 1000); // 1000 มิลลิวินาที = 1 วินาที
   }
 // ========== ฟังก์ชันแสดงเพลงทั้งหมด ========== //
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!currentUser) {
     alert("กรุณาเข้าสู่ระบบก่อนใช้งานหน้า Home");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     return;
   }
 

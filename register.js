@@ -79,5 +79,5 @@ function getUsers() {
     saveProfiles(username, profiles[username]); // บันทึกโปรไฟล์
   
     alert("สมัครสมาชิกสำเร็จ!");
-    window.location.href = "login.html"; // ไปหน้าเข้าสู่ระบบ 
+    window.location.href = "index.html"; // ไปหน้าเข้าสู่ระบบ 
   }

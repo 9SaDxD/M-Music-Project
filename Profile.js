@@ -769,7 +769,7 @@ document.querySelector(".logout").addEventListener("click", logout);
 function logout() {
   localStorage.removeItem("currentUser");
   setTimeout(() => {
-    window.location.href = "login.html"; // เปลี่ยนหน้าไปยังหน้า login หลังจาก 1 วินาที
+    window.location.href = "index.html"; // เปลี่ยนหน้าไปยังหน้า login หลังจาก 1 วินาที
   }, 1000); // 1000 มิลลิวินาที = 1 วินาที
 }
 
